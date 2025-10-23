@@ -91,11 +91,11 @@ DumpMemoryTypeInfoSummary (
   // Use a heuristic to adjust the Memory Type Information for the next boot
   //
   //MU_CHANGE - Add minimum memory type allocations
-  DEBUG ((DEBUG_INFO, "\n"));
-  DEBUG ((DEBUG_INFO, "             (HOB)   (ConfTabl)   (HOB)    (Var)  \n"));
-  DEBUG ((DEBUG_INFO, "  Memory    Previous  Current    Minimum   Next   \n"));
-  DEBUG ((DEBUG_INFO, "   Type      Pages     Pages      Pages    Pages  \n"));
-  DEBUG ((DEBUG_INFO, "==========  ========  ========  ========  ========\n"));
+  DEBUG ((EFI_D_ERROR, "\n"));
+  DEBUG ((EFI_D_ERROR, "             (HOB)   (ConfTabl)   (HOB)    (Var)  \n"));
+  DEBUG ((EFI_D_ERROR, "  Memory    Previous  Current    Minimum   Next   \n"));
+  DEBUG ((EFI_D_ERROR, "   Type      Pages     Pages      Pages    Pages  \n"));
+  DEBUG ((EFI_D_ERROR, "==========  ========  ========  ========  ========\n"));
   //MU_CHANGE - END
   for (Index = 0; PreviousMemoryTypeInformation[Index].Type != EfiMaxMemoryType; Index++) {
     for (Index1 = 0; CurrentMemoryTypeInformation[Index1].Type != EfiMaxMemoryType; Index1++) {
@@ -145,21 +145,21 @@ DumpMemoryTypeInfoSummary (
       MemoryTypeInformationModified = TRUE;
     }
 
-    DEBUG ((DEBUG_INFO, ShortNameOfMemoryType (PreviousMemoryTypeInformation[Index].Type)));
+    DEBUG ((EFI_D_ERROR, ShortNameOfMemoryType (PreviousMemoryTypeInformation[Index].Type)));
     //MU_CHANGE - Add minimum memory type allocations
-    DEBUG ((DEBUG_INFO, "  %08x  %08x  %08x  %08x\n", Previous, Current, Minimum, Next));
+    DEBUG ((EFI_D_ERROR, "  %08x  %08x  %08x  %08x\n", Previous, Current, Minimum, Next));
     //MU_CHANGE - End
   }
 
-  DEBUG ((DEBUG_INFO, "\n"));
+  DEBUG ((EFI_D_ERROR, "\n"));
 
   if (MemoryTypeInformationModified) {
-    DEBUG ((DEBUG_INFO, "MemoryTypeInformation - Modified. RESET Needed!\n"));
+    DEBUG ((EFI_D_ERROR, "MemoryTypeInformation - Modified. RESET Needed!\n"));
   } else {
-    DEBUG ((DEBUG_INFO, "MemoryTypeInformation - Unmodified.\n"));
+    DEBUG ((EFI_D_ERROR, "MemoryTypeInformation - Unmodified.\n"));
   }
 
-  DEBUG ((DEBUG_INFO, "\n"));
+  DEBUG ((EFI_D_ERROR, "\n"));
 }
 
 EFI_STATUS
@@ -173,7 +173,7 @@ TestPointCheckMemoryTypeInformation (
   VOID               *PreviousMemoryTypeInformation;
   VOID               *MemoryTypeMinimumAllocationInformation; //MU_CHANGE - Add minimum memory type allocations
 
-  DEBUG ((DEBUG_INFO, "==== TestPointCheckMemoryTypeInformation - Enter\n"));
+  DEBUG ((EFI_D_ERROR, "==== TestPointCheckMemoryTypeInformation - Enter\n"));
   CurrentMemoryTypeInformation           = NULL;
   PreviousMemoryTypeInformation          = NULL;
   MemoryTypeMinimumAllocationInformation = NULL; //MU_CHANGE - Add minimum memory type allocations
@@ -202,7 +202,7 @@ TestPointCheckMemoryTypeInformation (
   }
   //MU_CHANGE - End
 
-  DEBUG ((DEBUG_INFO, "==== TestPointCheckMemoryTypeInformation - Exit\n"));
+  DEBUG ((EFI_D_ERROR, "==== TestPointCheckMemoryTypeInformation - Exit\n"));
 
 Done:
   if (EFI_ERROR (Status)) {
